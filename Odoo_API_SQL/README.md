@@ -1,4 +1,5 @@
 Odoo_API_SQL
+https://netping.atlassian.net/wiki/spaces/NW/pages/3415998495/Odoo+API+SQL+SQL+HTTP+API+PRJ+2517209
 ------------------------
 
 # -- Install --
