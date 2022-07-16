@@ -1,4 +1,5 @@
 Odoo_Netping_Sales
+https://netping.atlassian.net/wiki/spaces/NW/pages/3208153353/Odoo+Sales+app+PRJ+2517209
 ------------------------
 
 # -- Install --
