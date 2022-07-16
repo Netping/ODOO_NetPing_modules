@@ -1,4 +1,5 @@
 Odoo_Netping_Accounting
+https://netping.atlassian.net/wiki/spaces/NW/pages/3119546478/Odoo14+Accounting+app+PRJ+2517209
 ------------------------
 
 # -- Install --
