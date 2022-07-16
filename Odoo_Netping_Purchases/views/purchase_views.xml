@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+      <!-- Requests for Quotation -->
+
+      <!-- Create custom view for Requests for Quotation menu -->
+      <record id="netping_purchase_order_kpis_tree" model="ir.ui.view">
+          <field name="name">netping.purchase.order.inherit.purchase.order.tree</field>
+          <field name="model">purchase.order</field>
+          <field name="priority" eval="10"/>
+          <field name="arch" type="xml">
+              <tree string="Purchase Order" multi_edit="1" decoration-bf="message_unread==True"
+                    class="o_purchase_order" js_class="purchase_list_dashboard" sample="1">
+                  <header>
+                      <button name="action_create_invoice" type="object" string="Create Bills"/>
+                  </header>
+                  <field name="priority" optional="hide" widget="priority" nolabel="1"/>
+                  <field name="message_unread" invisible="1"/>
+                  <field name="name" string="Reference" readonly="1" decoration-bf="1"/>
+                  <field name="date_order" string="Order Date"/>
+                  <field name="partner_id" readonly="1"/>
+                  <field name="company_id" readonly="1" options="{'no_create': True}" groups="base.group_multi_company"
+                         invisible="1"/>
+                  <field name="user_id" invisible="1" widget="many2one_avatar_user"/>
+                  <field name="date_planned" string="Scheduled Date"/>
+                  <field name="origin"/>
+                  <field name="amount_untaxed" sum="Total Untaxed amount" string="Untaxed" widget="monetary"/>
+                  <field name="amount_total" sum="Total amount" widget="monetary" string="Total" decoration-bf="1"/>
+                  <field name="currency_id" invisible="1"/>
+                  <field name="state" widget="badge" decoration-success="state == 'purchase' or state == 'done'"
+                         decoration-warning="state == 'to approve'" decoration-info="state == 'draft' or state == 'sent'"/>
+                  <field name="invoice_status" widget="badge"
+                         decoration-success="invoice_status == 'invoiced'" decoration-info="invoice_status == 'to invoice'"
+                         optional="hide"/>
+              </tree>
+          </field>
+      </record>
+
+      <!-- Override purchase_rfq action for Requests for Quotation menu-->
+      <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+          <field name="name">Requests for Quotation</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">purchase.order</field>
+          <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+          <field name="view_id" ref="netping_purchase_order_kpis_tree"/>
+          <field name="domain">[('state','in', ('draft', 'sent', 'to approve'))]</field>
+          <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+          <field name="context">{'quotation_only': True}</field>
+          <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                  No request for quotation found. Let's create one!
+              </p>
+              <p>
+                  Requests for quotation are documents that will be sent to your suppliers to request prices for different products you consider buying.
+                  Once an agreement has been found with the supplier, they will be confirmed and turned into purchase orders.
+              </p>
+          </field>
+      </record>
+
+
+      <!-- Purchase Orders -->
+
+      <!-- Create custom view for Purchase Orders menu -->
+      <record id="netping_purchase_order_view_tree" model="ir.ui.view">
+          <field name="name">netping.purchase.order.view.tree</field>
+          <field name="model">purchase.order</field>
+          <field name="arch" type="xml">
+              <tree decoration-bf="message_unread==True" decoration-muted="state=='cancel'" decoration-info="state in ('wait','confirmed')" string="Purchase Order" class="o_purchase_order" sample="1">
+                  <header>
+                      <button name="action_create_invoice" type="object" string="Create Bills"/>
+                  </header>
+                  <field name="priority" optional="hide" widget="priority" nolabel="1"/>
+                  <field name="message_unread" invisible="1"/>
+                  <field name="name" string="Reference" readonly="1" decoration-bf="1"/>
+                  <field name="date_order" string="Order Date"/>
+                  <field name="partner_id"/>
+                  <field name="date_planned" string="Scheduled Date"/>
+                  <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" invisible="1"/>
+                  <field name="user_id" widget="many2one_avatar_user" optional="hide"/>
+                  <field name="origin"/>
+                  <field name="amount_untaxed" sum="Total Untaxed amount" string="Untaxed" widget="monetary"/>
+                  <field name="amount_total" sum="Total amount" widget="monetary" decoration-bf="1" string="Total"/>
+                  <field name="currency_id" invisible="1"/>
+                  <field name="state" widget="badge" decoration-success="state == 'purchase' or state == 'done'"
+                         decoration-warning="state == 'to approve'" decoration-info="state == 'draft' or state == 'sent'"/>
+                  <field name="invoice_status" widget="badge" decoration-success="invoice_status == 'invoiced'"
+                         decoration-info="invoice_status == 'to invoice'" optional="hide"/>
+              </tree>
+          </field>
+      </record>
+
+      <!-- Override sale_order_action_view_order_tree action for Sales Orders menu -->
+      <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+          <field name="name">Purchase Orders</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">purchase.order</field>
+          <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+          <field name="view_id" ref="netping_purchase_order_view_tree"/>
+          <field name="domain">[('state','=', 'purchase')]</field>
+          <field name="search_view_id" ref="purchase.purchase_order_view_search"/>
+          <field name="context">{}</field>
+          <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                  No purchase order found. Let's create one!
+              </p>
+              <p>
+                  Once you ordered your products to your supplier, confirm your request for quotation and it will turn into a purchase order.
+              </p>
+          </field>
+      </record>
+
+      <!-- Update purchase orders form -->
+      <record model="ir.ui.view" id="netping_purchase_order_form">
+          <field name="name">netping.purchase.order.form</field>
+          <field name="model">purchase.order</field>
+          <field name="inherit_id" ref="purchase.purchase_order_form"/>
+          <field name="arch" type="xml">
+              <data>
+                  <xpath expr="//button[@name='action_rfq_send' and @states='purchase']" position="attributes">
+                      <attribute name='invisible'>1</attribute>
+                  </xpath>
+                  <xpath expr="//button[@name='confirm_reminder_mail']" position="attributes">
+                      <attribute name='invisible'>1</attribute>
+                  </xpath>
+                  <xpath expr="//button[@name='action_create_invoice'][1]" position="attributes">
+                      <attribute name='invisible'>1</attribute>
+                  </xpath>
+                  <xpath expr="//button[@name='action_create_invoice'][2]" position="attributes">
+                      <attribute name='invisible'>1</attribute>
+                  </xpath>
+                  <xpath expr="//button[@name='button_done']" position="attributes">
+                      <attribute name='string'>SET TO DONE</attribute>
+                  </xpath>
+                  <label for="date_approve" position="replace"></label>
+                  <div name="date_approve" position="replace"></div>
+                  <xpath expr="//field[@name='date_order']" position="attributes">
+                      <attribute name='attrs'>{'invisible': [('state', '=', False)]}</attribute>
+                      <attribute name='string'>Order Date</attribute>
+                  </xpath>
+                  <label for="date_planned" position="replace">
+                      <label for="date_planned" string="Scheduled Date"></label>
+                  </label>
+<!--                  <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">-->
+<!--                      <field name="customer_lead" string="Delivery Lead Time"/>-->
+<!--                  </xpath>-->
+
+              </data>
+          </field>
+      </record>
+    
+  </data>
+</odoo>
