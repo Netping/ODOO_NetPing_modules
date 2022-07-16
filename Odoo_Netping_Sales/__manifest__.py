@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name' : 'Odoo_Netping_Sales',
-    'version' : '1.1',
+    'version' : '2.1',
     'summary': 'Sales',
     'author': 'Andrei Zelenin',
     'sequence': 0,
@@ -14,6 +14,8 @@ The specific module for customize standart Sales module for Netping.
     'depends' : ['sale'],
     'data': [
         'views/sale_views.xml',
+        'report/sale_report.xml',
+        'report/sale_report_templates.xml',
     ],
     'installable': True,
     'application': True,
