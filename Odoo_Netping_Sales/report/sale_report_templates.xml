@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="precontentfp_layout_netping">
+        <!--t t-set="colclass" t-value="('col-md-5' if report_type == 'html' else 'col-5') + ' ml-auto'"/-->
+            <div class="row mt-3">
+                <div class="col-12 text-center" name="company_address">
+                    <h2 t-field="company.partner_id"/>
+                </div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+				    <strong>Address: </strong><span t-field="company.partner_id.contact_address_complete"></span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 mb-3">
+				    <strong>Phone: </strong><span class="mr-1" t-field="company.partner_id.phone"></span>
+					<strong>E-mail: </strong><span class="mr-1" t-field="company.partner_id.email"></span>
+					<strong>Website: </strong><span class="mr-1" t-field="company.partner_id.website"></span>
+				</div>
+			</div>
+    </template>
+
+    <template id="banks_layout_netping">
+        <!--t t-set="colclass" t-value="('col-md-5' if report_type == 'html' else 'col-5') + ' ml-auto'"/-->
+        <t t-if="banks">
+            <div class="banks">
+                <t t-raw="banks"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="external_layout_netping">	
+        <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+            <div class="row">
+                <div class="col-3 mb4">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
+                </div>
+                <div class="col-9 text-right" style="margin-top:22px;" t-field="company.report_header" name="moto"/>
+            </div>
+            <div t-if="company.logo or company.report_header" class="row zero_min_height">
+                <div class="col-12">
+                    <div style="border-bottom: 1px solid black;"/>
+                </div>
+            </div>			
+        </div>
+
+        <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <div class="pt-3 mb-3">
+                <!-- This div ensures that the address is not cropped by the header. -->
+				<t t-call="Odoo_Netping_Sales.precontentfp_layout_netping"/>
+				<t t-call="Odoo_Netping_Sales.banks_layout_netping"/>
+                <t t-call="web.address_layout"/>
+            </div>
+            <t t-raw="0"/>
+        </div>
+
+        <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+            <div class="text-center" style="border-top: 1px solid black;">
+                <ul class="list-inline mb4 list-styled">
+                    <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report
+                         adding d-inline class fixes the problem-->
+                    <li t-if="company.phone" class="list-inline-item d-inline"><span>Phone: </span><span class="o_force_ltr" t-field="company.phone"/></li>
+                    <li t-if="company.email" class="list-inline-item d-inline"><span>Email: </span><span t-field="company.email"/></li>
+                    <li t-if="company.website" class="list-inline-item d-inline"><span>Website: </span><span t-field="company.website"/></li>
+                </ul>
+				<ul class="list-inline mb4 list-styled">
+    				<li t-if="company.vat" class="list-inline-item d-inline"><span>TIN: </span><span t-field="company.vat"/></li>
+					<li t-if="company.partner_id.bank_ids" class="list-inline-item d-inline"><t t-esc="company.partner_id.bank_ids[0].bank_id.name"/>: <t t-esc="company.partner_id.bank_ids[0].acc_number"/></li>
+				</ul>
+
+                <div t-if="report_type == 'pdf'" class="text-muted">
+                    Page: <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+	
+    <template id="report_saleorder_document_netping" inherit_id="sale.report_saleorder_document">	
+	    <xpath expr="//t[@t-set='address']" position="before">
+		    <t t-set="banks">
+	            <div class="row mb-3" t-foreach="doc.company_id.partner_id.bank_ids" t-as="bank">
+				    <div  class="col-12">
+				        <div class="mb-3" t-if="bank.bank_id.name != 'PayPal'">
+				            <div>
+					            <strong>Bank's name: </strong><span t-esc="bank.bank_id.name"></span>
+					        </div>
+					        <div t-if="bank.bank_id.street">
+					            <strong>Bank's address: </strong>
+						        <span t-esc="bank.bank_id.street"></span>, <span t-esc="bank.bank_id.city"></span> 
+						        <span t-esc="bank.bank_id.zip"></span>, <span t-esc="bank.bank_id.country.name"></span>
+					        </div>
+						    <div t-if="bank.acc_number">
+					            <strong>Account No.: </strong>
+						        <span t-esc="bank.acc_number"></span><br/>
+					        </div>
+						    <div t-if="bank.bank_id.bic">
+					            <strong>Swift code: </strong>
+						        <span t-esc="bank.bank_id.bic"></span><br/>
+					        </div>
+                        </div>
+					    <div class="mb-3" t-if="bank.bank_id.name == 'PayPal'">
+				            <div>
+					           <strong t-esc="bank.bank_id.name"></strong><strong>: </strong><span t-esc="bank.bank_id.bic"></span>
+					        </div>
+                        </div>
+				    </div>
+               </div>
+			   <br/><br/>
+		    </t>
+		</xpath>
+		
+		<xpath expr="//t[@t-set='address']" position="after">
+		    <t t-if="doc.partner_shipping_id == doc.partner_invoice_id or doc.partner_shipping_id != doc.partner_invoice_id">
+                <t t-set="information_block">
+                        <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Invoicing and Shipping Address:</strong>
+                        <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing Address:</strong>
+                        <div t-field="doc.partner_invoice_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                            <t t-if="doc.partner_shipping_id != doc.partner_invoice_id">
+                                <strong>Shipping Address:</strong>
+                                <div t-field="doc.partner_shipping_id"
+                                    t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                            </t>
+                </t>
+            </t>
+		</xpath>
+		
+	    <xpath expr="//div[@id='informations']" position="replace">
+		    <br/>
+		    <div class="row" style="display:flex;">
+                <div t-if="doc.client_order_ref" class="col-auto col-3 mw-25 mb-2">
+                    <strong>Your Reference:</strong>
+                    <p class="m-0" t-field="doc.client_order_ref"/>
+                </div>
+                <div t-if="doc.date_order and doc.state not in ['draft','sent']" class="col-auto col-3 mw-25 mb-2">
+                    <strong>Date Ordered:</strong>
+                    <p class="m-0" t-field="doc.date_order"/>
+                </div>
+                <div t-if="doc.date_order and doc.state in ['draft','sent']" class="col-auto col-3 mw-25 mb-2">
+                    <strong>Quotation Date:</strong>
+                    <p class="m-0" t-field="doc.date_order" t-options='{"widget": "date"}'/>
+                </div>
+                <div t-if="doc.validity_date and doc.state in ['draft', 'sent']" class="col-auto col-3 mw-25 mb-2" name="expiration_date">
+                    <strong>Expiration:</strong>
+                    <p class="m-0" t-field="doc.validity_date"/>
+                </div>
+                <div t-if="doc.user_id.name" class="col-auto col-3 mw-25 mb-2">
+                    <strong>Salesperson:</strong>
+                    <p class="m-0" t-field="doc.user_id"/>
+                </div>
+			    <div t-if="doc.x_delivery_by" class="col-auto col-3 mw-25 mb-2">
+                    <strong>Delivery by:</strong>
+                    <p class="m-0" t-field="doc.x_delivery_by"/>
+                </div>
+		    </div>
+		    <br/>
+        </xpath>
+		
+		<xpath expr="//th[@name='th_subtotal']" position="replace">
+		    <th name="th_subtotal" class="text-right">
+                <span>Price</span>
+            </th>
+        </xpath>
+		
+		<xpath expr="//td[@name='td_quantity']" position="replace">
+		    <th name="td_quantity" class="text-right">
+                <span t-field="line.product_uom_qty"/>
+            </th>
+        </xpath>
+		
+		<xpath expr="//td[@name='td_amount_untaxed_label']" position="replace">
+		    <td name="td_amount_untaxed_label"><strong>Total Without Taxes</strong></td>
+        </xpath>
+		
+		<xpath expr="//tr[hasclass('o_subtotal')]" position="after">
+		    <tr class="border-black o_subtotal" style="">
+                <td name="td_amount_tax_label">Taxes</td>
+                <td name="td_amount_tax" class="text-right">
+                    <span t-field="doc.amount_tax"/>
+                </td>
+            </tr>
+        </xpath>
+		
+		<xpath expr="//div[hasclass('clearfix')]" position="after">
+		    <div class="row">
+			    <div class="col-12">
+				    <strong>Items may be subject to custom processing. Buyer is fully responsible and must pay: import duties and taxes, brokerage fess payable at the point of delivery.</strong>
+				</div>
+			</div>
+		</xpath>
+    </template>
+</odoo>
