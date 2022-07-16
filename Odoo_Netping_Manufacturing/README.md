@@ -1,4 +1,5 @@
 Odoo_Netping_Manufacturing
+https://netping.atlassian.net/wiki/spaces/NW/pages/3288268891/Manufacturing+app+IPRJ+29184673
 ------------------------
 
 # -- Install --
