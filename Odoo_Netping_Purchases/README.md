@@ -1,4 +1,5 @@
 Odoo_Netping_Purchases
+https://netping.atlassian.net/wiki/spaces/NW/pages/3284369536/Odoo+Purchases+app+PRJ+2517209
 ------------------------
 
 # -- Install --
