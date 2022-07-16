@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- Quotations -->
+
+    <!-- create custom view for Quotations menu -->
+    <record id="netping_view_quotation_tree" model="ir.ui.view">
+        <field name="name">netping.sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="priority">4</field>
+        <field name="arch" type="xml">
+            <tree string="Quotation" class="o_sale_order" multi_edit="1" sample="1">
+                <field name="name" string="Quotation Number" readonly="1" decoration-bf="1"/>
+                <field name="create_date" string="Order Date" widget="date" optional="show"/>
+                <field name="partner_id" readonly="1"/>
+                <field name="user_id" widget="many2one_avatar_user" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company" invisible="1" readonly="1"/>
+                <field name="amount_total" sum="Total Tax Included" widget="monetary" decoration-bf="1" optional="show"/>
+                <field name="state" decoration-success="state == 'sale' or state == 'done'" decoration-info="state == 'draft' or state == 'sent'" widget="badge" optional="show"/>
+                <field name="invoice_status" optional="hide"/>
+                <field name="message_needaction" invisible="1"/>
+                <field name="currency_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Override sale_order_view_search_inherit_quotation view for Quotation menu-->
+    <record id="netping_sale_order_view_search_inherit_quotation" model="ir.ui.view">
+        <field name="name">netping.sale.order.view.search.inherit.quotation</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='draft']" position="before">
+                <filter name="notcancel" string="Not Cancelled" domain="[('state', '!=', 'cancel')]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Override action_quotations_with_onboarding action for Quotations menu -->
+    <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+        <field name="name">Quotations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_id" ref="netping_view_quotation_tree"/>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="search_view_id" ref="netping_sale_order_view_search_inherit_quotation"/>
+        <field name="context">{'search_default_notcancel': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new quotation, the first step of a new sale!
+            </p><p>
+                Once the quotation is confirmed by the customer, it becomes a sales order.<br/> You will be able to create an invoice and collect the payment.
+            </p>
+        </field>
+    </record>
+
+
+    <!-- Sales Orders -->
+
+    <!-- create custom view for Sales Orders menu -->
+    <record id="netping_view_order_tree" model="ir.ui.view">
+        <field name="name">netping.sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="priority">2</field>
+        <field name="arch" type="xml">
+            <tree string="Sales Orders" decoration-success="invoice_status=='invoiced'"
+                  decoration-info="invoice_status=='to invoice'"
+                  decoration-danger="validity_date&lt;today"
+                  multi_edit="1" sample="1" default_order="validity_date desc">
+                <field name="message_needaction" invisible="1"/>
+                <field name="name" string="Order Number" readonly="1" decoration-bf="1"/>
+                <field name="date_order" string="Order Date" widget="date" optional="show"/>
+                <field name="partner_id" readonly="1"/>
+                <field name="client_order_ref" string="Customer Reference"/>
+                <field name="validity_date" string="Expiration Date"/>
+                <field name="user_id" optional="hide" widget="many2one_avatar_user"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide" readonly="1"/>
+                <field name="amount_total" sum="Total Tax Included" widget="monetary" decoration-bf="1" optional="show"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="invoice_status" widget="badge" optional="show"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Override sale_order_action_view_order_tree action for Sales Orders menu -->
+    <record id="sale.sale_order_action_view_order_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="netping_view_order_tree"/>
+        <field name="act_window_id" ref="sale.action_orders"/>
+    </record>
+
+	 <!-- Update sale order form -->
+    <record model="ir.ui.view" id="netping_view_order_form">
+        <field name="name">netping.view.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+		<field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                    <field name="analytic_account_id"/>
+                </xpath>
+                <xpath expr="//field[@name='show_update_pricelist']" position="before">
+                    <field name="x_delivery_by"/>
+                </xpath>
+			    <xpath expr="//field[@name='validity_date']" position="replace"></xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="before">
+                    <field name="validity_date"/>
+                </xpath>
+                <xpath expr="//field[@name='validity_date']" position="attributes">
+                    <attribute name='attrs'>{'invisible': [('state', '=', False)]}</attribute>
+                    <attribute name='string'>Expiration Date</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="attributes">
+                    <attribute name='string'>Ordered Qty</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='customer_lead']" position="replace"></xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+                    <field name="customer_lead" string="Delivery Lead Time"
+                           attrs="{'readonly': [('parent.state', 'not in', ['draft', 'sent', 'sale'])]}"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
+    
+  </data>
+</odoo>
