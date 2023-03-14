@@ -14,6 +14,7 @@ The specific module for customize standart MRP module for Netping.
     'depends' : ['mrp'],
     'data': [
         'views/mrp_production_views.xml',
+		'views/product_views.xml',
     ],
     'installable': True,
     'application': True,

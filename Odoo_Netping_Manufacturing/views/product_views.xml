@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+  
+	<!-- Override product_template_action action for Products menu -->
+	<record id="mrp.product_template_action" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="res_model">product.template</field>
+            <field name="search_view_id" ref="mrp.mrp_product_template_search_view"/>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="context">{"search_default_consumable": 1, 'default_type': 'product'}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                No product found. Let's create one!
+              </p><p>
+                Define the components and finished products you wish to use in
+                bill of materials and manufacturing orders.
+              </p>
+            </field>
+        </record>
+  </data>
+</odoo>
