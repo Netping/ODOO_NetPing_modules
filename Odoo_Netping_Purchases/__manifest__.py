@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name' : 'Odoo_Netping_Purchases',
-    'version' : '1.1',
+    'version' : '1.2',
     'summary': 'Purchase',
     'author': 'Andrei Zelenin',
     'sequence': 0,
