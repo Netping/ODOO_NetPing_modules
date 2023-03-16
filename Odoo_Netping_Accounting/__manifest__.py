@@ -15,6 +15,7 @@ The specific module for customize standart Accounting module for Netping.
     'data': [
         'views/account_move_views.xml',
 		'views/partner_view.xml',
+		'views/account_menuitem.xml',
     ],
     'installable': True,
     'application': True,

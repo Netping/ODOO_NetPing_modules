@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+	<!-- Override Menu Items -->
+	
+	<!-- Customers/Credit Notes -->
+	<record model="ir.ui.menu" id="account.menu_action_move_out_refund_type">
+		<field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+	</record>
+
+	<!-- Customers/Receipts -->
+	<record model="ir.ui.menu" id="account.menu_action_move_out_receipt_type">
+		<field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+	</record>
+	
+	<!-- Customers/Payments -->
+	<record model="ir.ui.menu" id="account.menu_action_account_payments_receivable">
+		<field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+	</record>
+	
+	<!-- Customers/Products -->
+	<record model="ir.ui.menu" id="account.product_product_menu_sellable">
+		<field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+	</record>
+	
+	<!-- Vendors/Refunds -->
+	<record model="ir.ui.menu" id="account.menu_action_move_in_refund_type">
+		<field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+	</record>
+	
+	<!-- Vendors/Receipts -->
+	<record model="ir.ui.menu" id="account.menu_action_move_in_receipt_type">
+		<field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+	</record>
+	
+	<!-- Vendors/Payments -->
+	<record model="ir.ui.menu" id="account.menu_action_account_payments_payable">
+		<field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+	</record>
+	
+	<!-- Vendors/Products -->
+	<record model="ir.ui.menu" id="account.product_product_menu_purchasable">
+		<field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+	</record>
+	
+	<!-- Accounting -->
+	<record model="ir.ui.menu" id="account.menu_finance_entries">
+		<field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+	</record>
+	
+	<!-- Reporting -->
+	<record model="ir.ui.menu" id="account.menu_finance_reports">
+		<field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+	</record>
+	
+	<!-- Configuration -->
+	<record model="ir.ui.menu" id="account.menu_finance_configuration">
+		<field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+	</record>
+  
+  </data>
+</odoo>
