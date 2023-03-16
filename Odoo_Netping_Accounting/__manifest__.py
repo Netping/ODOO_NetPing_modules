@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name' : 'Odoo_Netping_Accounting',
-    'version' : '1.2',
+    'version' : '1.3',
     'summary': 'Accounting',
     'author': 'Andrei Zelenin',
     'sequence': 0,
