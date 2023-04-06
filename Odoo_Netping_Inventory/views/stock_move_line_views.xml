@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+  
+	<!-- Products -->
+	
+	<!-- Override stock_move_line_view_search view for Products/Products menu-->
+    <record id="netping_stock_move_line_view_search" model="ir.ui.view">
+        <field name="name">netping.stock.move.line.search</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.stock_move_line_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='todo']" position="after">
+                <filter name="notcancel" string="Not Cancelled" domain="[('state', '!=', 'cancel')]"/>
+            </xpath>                     
+        </field>
+    </record>
+
+
+	<!-- Override stock_move_line_action action for Products menu -->
+    <record id="stock.stock_move_line_action" model="ir.actions.act_window">
+            <field name="name">Product Moves</field>
+            <field name="res_model">stock.move.line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,kanban,pivot,form</field>
+            <field name="view_id" ref="stock.view_move_line_tree"/>
+            <field name="context">{'search_default_notcancel': 1, 'search_default_groupby_product_id': 1, 'create': 0}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_empty_folder">
+                    There's no product move yet
+                </p><p>
+                    This menu gives you the full traceability of inventory operations on a specific product.
+                    You can filter on the product to see all the past movements for the product.
+                </p>
+            </field>
+    </record>
+
+  </data>
+</odoo>
