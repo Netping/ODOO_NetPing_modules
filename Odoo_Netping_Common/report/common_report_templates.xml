@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Create Config Parameter -->
+	<record id="report_url_param" model="ir.config_parameter">
+		<field name="key">report.url</field>
+		<field name="value">http://127.0.0.1:8069</field>
+	</record>
+
+	<!-- Add Paperformats -->
+	<record id="paperformat_east_a4_portrait" model="report.paperformat">
+        <field name="name">East A4 portrait</field>
+        <field name="default" eval="True"/>
+		<field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">15</field>
+        <field name="dpi">90</field>
+    </record>
+
+	<template id="precontentfp_layout_netping">
+        <!--t t-set="colclass" t-value="('col-md-5' if report_type == 'html' else 'col-5') + ' ml-auto'"/-->
+            <div class="row mt-3">
+                <div class="col-12 text-center" name="company_address">
+                    <h2 t-field="company.partner_id"/>
+                </div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+				    <strong>Address: </strong><span t-field="company.partner_id.contact_address_complete"></span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 mb-3">
+				    <strong>Phone: </strong><span class="mr-1" t-field="company.partner_id.phone"></span>
+					<strong>E-mail: </strong><span class="mr-1" t-field="company.partner_id.email"></span>
+					<strong>Website: </strong><span class="mr-1" t-field="company.partner_id.website"></span>
+				</div>
+			</div>
+    </template>
+
+    <template id="banks_layout_netping">
+        <!--t t-set="colclass" t-value="('col-md-5' if report_type == 'html' else 'col-5') + ' ml-auto'"/-->
+        <t t-if="banks">
+            <div class="banks">
+                <t t-raw="banks"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="external_layout_netping">	
+        <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+            <div class="row">
+                <div class="col-3 mb4">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
+                </div>
+                <div class="col-9 text-right" style="margin-top:22px;" t-field="company.report_header" name="moto"/>
+            </div>
+            <div t-if="company.logo or company.report_header" class="row zero_min_height">
+                <div class="col-12">
+                    <div style="border-bottom: 1px solid black;"/>
+                </div>
+            </div>			
+        </div>
+
+        <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <div class="pt-3 mb-3">
+                <!-- This div ensures that the address is not cropped by the header. -->
+				<t t-call="Odoo_Netping_Common.precontentfp_layout_netping"/>
+				<t t-call="Odoo_Netping_Common.banks_layout_netping"/>
+                <t t-call="web.address_layout"/>
+            </div>
+            <t t-raw="0"/>
+        </div>
+
+        <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+            <div class="text-center" style="border-top: 1px solid black;">
+                <ul class="list-inline mb4 list-styled">
+                    <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report
+                         adding d-inline class fixes the problem-->
+                    <li t-if="company.phone" class="list-inline-item d-inline"><span>Phone: </span><span class="o_force_ltr" t-field="company.phone"/></li>
+                    <li t-if="company.email" class="list-inline-item d-inline"><span>Email: </span><span t-field="company.email"/></li>
+                    <li t-if="company.website" class="list-inline-item d-inline"><span>Website: </span><span t-field="company.website"/></li>
+                </ul>
+				<ul class="list-inline mb4 list-styled">
+    				<li t-if="company.vat" class="list-inline-item d-inline"><span>TIN: </span><span t-field="company.vat"/></li>
+					<li t-if="company.partner_id.bank_ids" class="list-inline-item d-inline"><t t-esc="company.partner_id.bank_ids[0].bank_id.name"/>: <t t-esc="company.partner_id.bank_ids[0].acc_number"/></li>
+				</ul>
+
+                <div t-if="report_type == 'pdf'" class="text-muted">
+                    Page: <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>

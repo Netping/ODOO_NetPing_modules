@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <!-- Group for show hidden Menus (like as Discuss, Contacts, Link tracker, Quality) -->
+		
+        <record model="res.groups" id="group_show_hidden_menus">
+            <field name="name">Show Hidden Menus</field>
+        </record>
+
+    </data>
+</odoo>
