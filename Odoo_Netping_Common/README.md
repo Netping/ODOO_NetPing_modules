@@ -7,8 +7,9 @@ https://netping.atlassian.net/wiki/
 2) Switch on developer mode
 3) Update app list
 4) DELETE "report.url" System Parameter from Menu "Settings --> Technical --> Parameters --> System Parameters"
-5) Search and click to install Netping Common module
-6) Set "East A4 portrait" Paperformat and "external_layout_netping" Layout in "Business Documents" part of Settings Menu
+5) Delete OLD "East A4 portrait" paperformat from "Settings --> Technical --> Reporting --> Paper Format"
+6) Search and click to install Netping Common module
+7) Set "East A4 portrait" Paperformat and "external_layout_netping" Layout in "Business Documents" part of Settings Menu
 
 
 

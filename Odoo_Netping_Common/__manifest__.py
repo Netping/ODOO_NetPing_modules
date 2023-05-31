@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name' : 'Odoo_Netping_Common',
-    'version' : '1.0',
+    'version' : '1.1',
     'summary': 'Common',
     'author': 'Andrei Zelenin',
     'sequence': 0,
