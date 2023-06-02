@@ -20,4 +20,6 @@ The specific module for general improvements for Netping.
     'installable': True,
     'application': True,
     'auto_install': False,
+	'pre_init_hook': 'common_pre_init_hook',
+	'post_init_hook': 'common_post_init_hook',
 }

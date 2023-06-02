@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# from . import models
-
 from odoo import api, SUPERUSER_ID
+
+from .hooks import common_pre_init_hook, common_post_init_hook
 
