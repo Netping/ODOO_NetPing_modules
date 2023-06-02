@@ -75,54 +75,6 @@
 				<t t-call="Odoo_Netping_Common.precontentfp_layout_netping"/>
 				<t t-call="Odoo_Netping_Common.banks_layout_netping"/>
                 <t t-call="web.address_layout"/>
-				<p>Ç'është Unicode?, in Albanian (36 letters)</p>
-<p>ما هي الشفرة الموحدة "يونِكود" ؟ in Arabic (36 letters)</p>
-<p>Ի՞նչ է Յունիկոդը ? in Armenian(36 letters)</p>
-<p>Какво е Unicode ? in Bulgarian (30 letters)</p>
-<p>什麽是Unicode(統一碼/標準萬國碼)? in Trad'l Chinese</p>
-<p>什么是Unicode(统一码)? in Simplified Chinese</p>
-<p>Što je Unicode? in Croatian (30 letters)</p>
-<p>Co je Unicode? in Czech (48 letters)</p>
-<p>Hvad er Unicode? in Danish(29 letters)</p>
-<p>Wat is Unicode? in Dutch(26 letters)</p>
-<p>Kio estas Unikodo? in Esperanto(31 letters)</p>
-<p>Mikä on Unicode? in Finnish(29 letters)</p>
-<p>Qu'est ce qu'Unicode? in French</p>
-<p>რა არის უნიკოდი? in Georgian</p>
-<p>Was ist Unicode? in German</p>
-<p>Τι είναι το Unicode; in Greek (Monotonic)</p>
-<p>Τί εἶναι τὸ Unicode; in Greek (Polytonic)</p>
-<p>מה זה יוניקוד (Unicode)? in Hebrew</p>
-<p>Mi az Unicode? in Hungarian</p>
-<p>Hvað er Unicode? in Icelandic</p>
-<p>Gịnị bụ Yunikod? in Igbo</p>
-<p>Que es Unicode? in Interlingua</p>
-<p>Cos'è Unicode? in Italian</p>
-<p>ユニコードとはか？in Japanese</p>
-<p>유니코드에 대해? in Korean</p>
-<p>Kas tai yra Unikodas? in Lithuanian</p>
-<p>Што е Unicode? in Macedonian</p>
-<p>X'inhu l-Unicode? in Maltese</p>
-<p>Unicode гэж юу вэ? in Mongolian</p>
-<p>Unicode, qu'es aquò? in Occitan</p>
-<p>يونی‌کُد چيست؟ in Persian</p>
-<p>Czym jest Unikod? in Polish</p>
-<p>O que é Unicode? in Portuguese</p>
-<p>Ce este Unicode? in Romanian</p>
-<p>Что такое Unicode? in Russian</p>
-<p>Šta je Unicode? in Serbian (Latin)</p>
-<p>Шта je Unicode? in Serbian</p>
-<p>Kaj je Unicode? in Slovenian</p>
-<p>¿Qué es Unicode? in Spanish</p>
-<p>Vad är Unicode? in Swedish</p>
-<p>Unicode คืออะไร? in Thai</p>
-<p>Що таке Юнікод? in Ukrainian</p>
-<p>Što je Unicode? in Upper Sorbian</p>
-<p>Evrensel Kod Nedir? in Turkish</p>
-<p>ﻳﯘﻧﯩﻜﻮﺩ ﺩﯨﮕﻪﻥ ﻧﯩﻤﻪ؟ in Uyghur</p>
-<p>Unicode dégen néme? in Uyghur (Latin)</p>
-<p>Unicode là gì? in Vietnamese</p>
-<p>Beth yw Unicode? in Welsh</p>
             </div>
             <t t-raw="0"/>
         </div>
