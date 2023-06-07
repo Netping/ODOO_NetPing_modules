@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_stock_picking_multiple_packages" model="ir.ui.view">
+            <field name="name">Stock Picking Multiple Packages</field>
+            <field name="model">stock.picking.multiple.packages</field>
+            <field name="arch" type="xml">
+                <form string="Add Multiple Packages">
+                    <field name="picking_id" invisible="1"/>
+					<field name="company_id" invisible="1"/>
+                    <field name="location_id" invisible="1"/>
+					<field name="location_dest_id" invisible="1"/>
+					<group string="Select range of packages">
+						<field name="start_package_id" string="From Package"/>
+						<field name="stop_package_id" string="To"/>
+					</group>
+                    <footer>
+                        <button name="action_done" string="Add" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_stock_picking_multiple_packages" model="ir.actions.act_window">
+            <field name="name">Stock Picking Multiple Packages</field>
+            <field name="res_model">stock.picking.multiple.packages</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>
