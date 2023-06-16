@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, fields, models
+import logging
+_logger = logging.getLogger(__name__)
 
 class StockPickingMuliplePackages(models.TransientModel):
 	_name = 'stock.picking.multiple.packages'
@@ -23,6 +25,6 @@ class StockPickingMuliplePackages(models.TransientModel):
 																('name', '>=', self.start_package_id.name),
 																('name', '<=', self.stop_package_id.name),
 																'|', ('company_id', '=', False), ('company_id', '=', self.company_id.id)]):
-			package_list.append((0, 0, {'package_id': package.id, 'is_done': True}))
+			package_list.append((0, 0, {'picking_id': self.picking_id.id, 'package_id': package.id, 'is_done': True}))
 		self.picking_id.write({'package_level_ids': package_list})
 		

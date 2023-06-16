@@ -20,7 +20,7 @@
 						type="action"
 						attrs="{'readonly': [('state', '=', 'done')],
 								'invisible': ['|', ('picking_type_entire_packs', '=', False), ('show_operations', '=', True)]}"
-						context="{'default_picking_id': active_id,
+						context="{'default_picking_id': id,
 								'default_location_id': location_id,
 								'default_location_dest_id': location_dest_id,
 								'default_company_id': company_id}"
