@@ -10,6 +10,7 @@
 					<field name="company_id" invisible="1"/>
                     <field name="location_id" invisible="1"/>
 					<field name="location_dest_id" invisible="1"/>
+					<field name="show_operations" invisible="1"/>
 					<group string="Select range of packages">
 						<field name="start_package_id" string="From Package"/>
 						<field name="stop_package_id" string="To"/>

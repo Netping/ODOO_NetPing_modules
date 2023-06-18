@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name' : 'Odoo_Netping_Inventory',
-    'version' : '2.2',
+    'version' : '2.3',
     'summary': 'Manage your stock and logistics activities',
     'author': 'Andrei Zelenin',
     'sequence': 0,

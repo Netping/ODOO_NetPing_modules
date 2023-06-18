@@ -14,6 +14,32 @@
                 <field name="x_GUI"/>
                 <field name="x_GUI_date"/>
             </xpath>
+			<xpath expr="//page[@name='detailed_operations_hidden']/field[@name='package_level_ids_details']" position="before">
+                <button name="%(action_stock_picking_multiple_packages)d"
+						string="Add multiple packages"
+						type="action"
+						attrs="{'readonly': [('state', '=', 'done')],
+								'invisible': ['|', ('picking_type_entire_packs', '=', False), ('show_operations', '=', False)]}"
+						context="{'default_picking_id': id,
+								'default_location_id': location_id,
+								'default_location_dest_id': location_dest_id,
+								'default_show_operations': show_operations,
+								'default_company_id': company_id}"
+				/>				
+            </xpath>
+			<xpath expr="//page[@name='detailed_operations_shown']/field[@name='package_level_ids_details']" position="before">
+                <button name="%(action_stock_picking_multiple_packages)d"
+						string="Add multiple packages"
+						type="action"
+						attrs="{'readonly': [('state', '=', 'done')],
+								'invisible': ['|', ('picking_type_entire_packs', '=', False), ('show_operations', '=', False)]}"
+						context="{'default_picking_id': id,
+								'default_location_id': location_id,
+								'default_location_dest_id': location_dest_id,
+								'default_show_operations': show_operations,
+								'default_company_id': company_id}"
+				/>				
+            </xpath>
 			<xpath expr="//field[@name='package_level_ids']" position="before">
                 <button name="%(action_stock_picking_multiple_packages)d"
 						string="Add multiple packages"
@@ -23,6 +49,7 @@
 						context="{'default_picking_id': id,
 								'default_location_id': location_id,
 								'default_location_dest_id': location_dest_id,
+								'default_show_operations': show_operations,
 								'default_company_id': company_id}"
 				/>				
             </xpath>
