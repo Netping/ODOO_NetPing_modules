@@ -1,3 +1,8 @@
+2.3 (2023-06-19)
+Added
+- Add multiple packages in internal transfer document [#36605746](https://netping.teamwork.com/#/tasks/36605746) (fa29663)
+- Auto filling check box "Done" when add package [#36605748](https://netping.teamwork.com/#/tasks/36605748) (fa29663)
+
 1.3 (2023-04-07)
 Changed
 - Visibility of the Operations menu items for non-Developer mode changed [#36416711](https://netping.teamwork.com/app/tasks/36416711) (888e2e5)
