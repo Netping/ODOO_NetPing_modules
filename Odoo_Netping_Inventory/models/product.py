@@ -6,5 +6,5 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
     _check_company_auto = True
 
-    x_hs_code = fields.Char(string="Export Code")
+    x_hs_code = fields.Char(string="HS-code")
 	

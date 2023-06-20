@@ -28,7 +28,7 @@
         <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='barcode']" position="after">
-                <field name="x_hs_code"/>
+                <field name="x_hs_code" string="HS-code"/>
             </xpath>
         </field>
     </record>
