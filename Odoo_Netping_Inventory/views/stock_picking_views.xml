@@ -18,6 +18,7 @@
                 <button name="%(action_stock_picking_multiple_packages)d"
 						string="Add multiple packages"
 						type="action"
+						class="oe_highlight oe_edit_only"
 						attrs="{'readonly': [('state', '=', 'done')],
 								'invisible': ['|', ('picking_type_entire_packs', '=', False), ('show_operations', '=', False)]}"
 						context="{'default_picking_id': id,
@@ -31,6 +32,7 @@
                 <button name="%(action_stock_picking_multiple_packages)d"
 						string="Add multiple packages"
 						type="action"
+						class="oe_highlight oe_edit_only"
 						attrs="{'readonly': [('state', '=', 'done')],
 								'invisible': ['|', ('picking_type_entire_packs', '=', False), ('show_operations', '=', False)]}"
 						context="{'default_picking_id': id,
@@ -44,6 +46,7 @@
                 <button name="%(action_stock_picking_multiple_packages)d"
 						string="Add multiple packages"
 						type="action"
+						class="oe_highlight oe_edit_only"
 						attrs="{'readonly': [('state', '=', 'done')],
 								'invisible': ['|', ('picking_type_entire_packs', '=', False), ('show_operations', '=', True)]}"
 						context="{'default_picking_id': id,

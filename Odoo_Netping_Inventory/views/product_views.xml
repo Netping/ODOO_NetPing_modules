@@ -20,6 +20,18 @@
             </p>
         </field>
     </record>
+	
+	<!-- Inherit Products (product_template_form_view_procurement_button) From -->
+    <record id="netping_view_product_template_form" model="ir.ui.view">
+        <field name="name">netping.product.template.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='barcode']" position="after">
+                <field name="x_hs_code"/>
+            </xpath>
+        </field>
+    </record>
 
   </data>
 </odoo>
