@@ -121,6 +121,15 @@
                     <field name="customer_lead" string="Delivery Lead Time"
                            attrs="{'readonly': [('parent.state', 'not in', ['draft', 'sent', 'sale'])]}"/>
                 </xpath>
+				<xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+					<field name="x_hs_code" readonly="1" string="HS-code"/>
+				</xpath>
+				<xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+					<field name="x_line_weight_str" readonly="1" string="Weight" class="text-right"/>
+				</xpath>
+				<xpath expr="//field[@name='amount_total']" position="after">
+					<field name="x_weight_str" class="oe_subtotal_footer_separator" string="Total Weight"/>
+				</xpath>
             </data>
         </field>
     </record>

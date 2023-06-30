@@ -98,14 +98,14 @@
 		    <td name="td_amount_untaxed_label"><strong>Total Without Taxes</strong></td>
         </xpath>
 		
-		<xpath expr="//tr[hasclass('o_subtotal')]" position="after">
+		<!--xpath expr="//tr[hasclass('o_subtotal')]" position="after">
 		    <tr class="border-black o_subtotal" style="">
                 <td name="td_amount_tax_label">Taxes</td>
                 <td name="td_amount_tax" class="text-right">
                     <span t-field="doc.amount_tax"/>
                 </td>
             </tr>
-        </xpath>
+        </xpath-->
 		
 		<xpath expr="//div[hasclass('clearfix')]" position="after">
 		    <div class="row">
@@ -114,6 +114,39 @@
 				</div>
 			</div>
 		</xpath>
+		
+		<xpath expr="//th[@name='th_description']" position="after">
+		    <th name="th_hscode" class="text-left">
+                <span>HS-code</span>
+            </th>
+        </xpath>
+		
+		<xpath expr="//td[@name='td_name']" position="after">
+		    <th name="td_hscode" class="text-left">
+                <span t-field="line.x_hs_code"/>
+            </th>
+        </xpath>
+		
+		<xpath expr="//th[@name='th_subtotal']" position="after">
+		    <th name="th_line_weight_str" class="text-right">
+                <span>Weight</span>
+            </th>
+        </xpath>
+		
+		<xpath expr="//td[@name='td_subtotal']" position="after">
+		    <th name="td_line_weight_str" class="text-right">
+                <span t-field="line.x_line_weight_str"/>
+            </th>
+        </xpath>
+		
+		<xpath expr="//tr[hasclass('o_total')]" position="after">
+			<tr class="border-black o_total" style="">
+                <td name="td_weight_str_label">Total Weight</td>
+                <td name="td_weight_str" class="text-right">
+                    <span t-field="doc.x_weight_str"/>
+                </td>
+            </tr>
+        </xpath>
     </template>
 	
 </odoo>
