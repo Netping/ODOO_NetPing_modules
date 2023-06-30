@@ -1,3 +1,8 @@
+2.3 (2023-05-15)
+
+Changed
+- Document layout settings moved to module Common [#36916109](https://netping.teamwork.com/#/tasks/36916109) (d53705d)
+
 2.2 (2023-04-27)
 
 Changed
