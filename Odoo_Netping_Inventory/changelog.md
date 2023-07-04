@@ -1,7 +1,8 @@
-2.3 (2023-06-19)
+3.1 (2023-07-04)
 Added
 - Add multiple packages in internal transfer document [#36605746](https://netping.teamwork.com/#/tasks/36605746) (fa29663)
 - Auto filling check box "Done" when add package [#36605748](https://netping.teamwork.com/#/tasks/36605748) (fa29663)
+- HS-code added to Product template [#37223262](https://netping.teamwork.com/#/tasks/37186769) (d6f8e9a)
 
 1.3 (2023-04-07)
 Changed
