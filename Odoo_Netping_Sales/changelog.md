@@ -1,3 +1,9 @@
+3.1 (2023-07-04)
+
+Added
+- HS-code field added to SOE [#37186769](https://netping.teamwork.com/#/tasks/37186769) (fd65ccf)
+- Products weight field added to SOE [#37186641](https://netping.teamwork.com/#/tasks/37186641) (fd65ccf)
+
 2.3 (2023-05-15)
 
 Changed
