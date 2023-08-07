@@ -98,23 +98,6 @@
 		    <td name="td_amount_untaxed_label"><strong>Total Without Taxes</strong></td>
         </xpath>
 		
-		<!--xpath expr="//tr[hasclass('o_subtotal')]" position="after">
-		    <tr class="border-black o_subtotal" style="">
-                <td name="td_amount_tax_label">Taxes</td>
-                <td name="td_amount_tax" class="text-right">
-                    <span t-field="doc.amount_tax"/>
-                </td>
-            </tr>
-        </xpath-->
-		
-		<xpath expr="//div[hasclass('clearfix')]" position="after">
-		    <div class="row">
-			    <div class="col-12">
-				    <strong>Items may be subject to custom processing. Buyer is fully responsible and must pay: import duties and taxes, brokerage fess payable at the point of delivery.</strong>
-				</div>
-			</div>
-		</xpath>
-		
 		<xpath expr="//th[@name='th_description']" position="after">
 		    <th name="th_hscode" class="text-left">
                 <span>HS-code</span>

@@ -130,6 +130,13 @@
 				<xpath expr="//field[@name='amount_total']" position="after">
 					<field name="x_weight_str" class="oe_subtotal_footer_separator" string="Total Weight"/>
 				</xpath>
+				<xpath expr="//group/field[@name='note']" position="replace">
+					<hr/>
+					<group col="1" colspan="4">
+						<label for="note" string="Terms and Сonditions"/>
+						<field name="note" nolabel="1" placeholder="Write note here..."/>
+					</group>
+				</xpath>
             </data>
         </field>
     </record>
