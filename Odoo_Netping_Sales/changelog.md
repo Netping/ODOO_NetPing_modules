@@ -1,3 +1,8 @@
+3.2 (2023-08-21)
+
+Added
+- Text box "Terms and conditions" added in Sales order and print form of Sale order [#37683287](https://netping.teamwork.com/#/tasks/37683287) (3484e8c)
+  
 3.1 (2023-07-04)
 
 Added
