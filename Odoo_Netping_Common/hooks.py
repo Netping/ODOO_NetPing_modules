@@ -27,4 +27,7 @@ def common_post_init_hook(cr, registry):
 	extlayout_id = extlayout.id if extlayout else 0
 	if extlayout_id:
 		env['res.company'].search([('id', '=', 1)]).external_report_layout_id = extlayout_id
+	# Add report.url current value
+	rep_url = env['ir.config_parameter'].get_param('web.base.url')
+	rep_url_conf = env['ir.config_parameter'].create({'key': 'report.url', 'value': rep_url})
 		

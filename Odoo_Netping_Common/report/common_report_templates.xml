@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-	<!-- Create Config Parameter -->
-	<record id="report_url_param" model="ir.config_parameter">
-		<field name="key">report.url</field>
-		<field name="value">http://127.0.0.1:8069</field>
-	</record>
-
 	<!-- Add Paperformats -->
 	<record id="paperformat_east_a4_portrait" model="report.paperformat">
         <field name="name">East A4 portrait</field>
