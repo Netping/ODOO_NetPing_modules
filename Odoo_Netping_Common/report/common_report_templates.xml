@@ -19,28 +19,28 @@
     </record>
 
 	<template id="precontentfp_layout_netping">
-        <!--t t-set="colclass" t-value="('col-md-5' if report_type == 'html' else 'col-5') + ' ml-auto'"/-->
-            <div class="row mt-3">
-                <div class="col-12 text-center" name="company_address">
-                    <h2 t-field="company.partner_id"/>
-                </div>
+		<!--t t-set="colclass" t-value="('col-md-5' if report_type == 'html' else 'col-5') + ' ml-auto'"/-->
+        <div class="row mt-3">
+            <div class="col-12 text-center" name="company_address">
+                <h2 t-field="company.partner_id"/>
+            </div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+			    <strong>Address: </strong><span t-field="company.partner_id.contact_address_complete"></span>
 			</div>
-			<div class="row">
-				<div class="col-12">
-				    <strong>Address: </strong><span t-field="company.partner_id.contact_address_complete"></span>
-				</div>
+		</div>
+		<div class="row">
+			<div class="col-12 mb-3">
+			    <strong>Phone: </strong><span class="mr-1" t-field="company.partner_id.phone"></span>
+				<strong>E-mail: </strong><span class="mr-1" t-field="company.partner_id.email"></span>
+				<strong>Website: </strong><span class="mr-1" t-field="company.partner_id.website"></span>
 			</div>
-			<div class="row">
-				<div class="col-12 mb-3">
-				    <strong>Phone: </strong><span class="mr-1" t-field="company.partner_id.phone"></span>
-					<strong>E-mail: </strong><span class="mr-1" t-field="company.partner_id.email"></span>
-					<strong>Website: </strong><span class="mr-1" t-field="company.partner_id.website"></span>
-				</div>
-			</div>
+		</div>
     </template>
 
     <template id="banks_layout_netping">
-        <!--t t-set="colclass" t-value="('col-md-5' if report_type == 'html' else 'col-5') + ' ml-auto'"/-->
+		<!--t t-set="colclass" t-value="('col-md-5' if report_type == 'html' else 'col-5') + ' ml-auto'"/-->
         <t t-if="banks">
             <div class="banks">
                 <t t-raw="banks"/>
@@ -48,7 +48,7 @@
         </t>
     </template>
 
-    <template id="external_layout_netping">	
+    <template id="external_layout_netping">
         <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
             <div class="row">
                 <div class="col-3 mb4">
@@ -65,7 +65,7 @@
 
         <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
             <div class="pt-3 mb-3">
-                <!-- This div ensures that the address is not cropped by the header. -->
+				<!-- This div ensures that the address is not cropped by the header. -->
 				<t t-call="Odoo_Netping_Common.precontentfp_layout_netping"/>
 				<t t-call="Odoo_Netping_Common.banks_layout_netping"/>
                 <t t-call="web.address_layout"/>
@@ -76,8 +76,7 @@
         <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
             <div class="text-center" style="border-top: 1px solid black;">
                 <ul class="list-inline mb4 list-styled">
-                    <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report
-                         adding d-inline class fixes the problem-->
+				<!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report adding d-inline class fixes the problem-->
                     <li t-if="company.phone" class="list-inline-item d-inline"><span>Phone: </span><span class="o_force_ltr" t-field="company.phone"/></li>
                     <li t-if="company.email" class="list-inline-item d-inline"><span>Email: </span><span t-field="company.email"/></li>
                     <li t-if="company.website" class="list-inline-item d-inline"><span>Website: </span><span t-field="company.website"/></li>
