@@ -136,6 +136,12 @@
                 <span>This offer valid until </span><span t-field="doc.validity_date"></span>
             </div>
         </xpath>
+			
+        <xpath expr="//div[@name='signature']" position="replace">
+            <div class="offset-8" t-if="doc.state in ['sale', 'done']">
+                <img src="/Odoo_Netping_Sales/static/img/comp_stamp.png" style="height:2.5cm;width:2.5cm;"/>
+            </div>
+        </xpath>
     </template>
 	
 </odoo>
