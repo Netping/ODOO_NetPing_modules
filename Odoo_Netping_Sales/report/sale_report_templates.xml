@@ -132,14 +132,15 @@
         </xpath>
 		
         <xpath expr="//p[@id='fiscal_position_remark']" position="after">
-            <div t-if="doc.validity_date">
+            <div t-if="doc.validity_date" class="mb-3">
                 <span>This offer valid until </span><span t-field="doc.validity_date"></span>
             </div>
         </xpath>
 			
         <xpath expr="//div[@name='signature']" position="replace">
             <div class="offset-8" t-if="doc.state in ['sale', 'done']">
-                <img src="/Odoo_Netping_Sales/static/img/comp_stamp.png" style="height:2.5cm;width:2.5cm;"/>
+                <img src="/Odoo_Netping_Sales/static/img/comp_stamp.png" class="mr-3" style="height:2.5cm;width:2.5cm;"/>
+                <img src="/Odoo_Netping_Sales/static/img/boss_stamp.png" style="height:1.3cm;width:1.3cm;"/>
             </div>
         </xpath>
     </template>
