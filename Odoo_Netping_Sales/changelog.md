@@ -1,8 +1,8 @@
 4.2 (2023-10-17)
 
 Added
-- Company stamp and director's stamp are added to the confirmed order in PDF format
-- Text "This offer valid until %EXPIRATION_DATE%" added to the confirmed order in PDF format
+- Company stamp and director's stamp are added to the confirmed order in PDF format [#37954652](https://netping.teamwork.com/#/tasks/37954652) (84d6116)
+- Text "This offer valid until %EXPIRATION_DATE%" added to the confirmed order in PDF format [#37954673](https://netping.teamwork.com/#/tasks/37954673) (4561be6)
 
 3.2 (2023-08-21)
 
