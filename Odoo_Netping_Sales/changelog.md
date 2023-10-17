@@ -1,3 +1,9 @@
+4.2 (2023-10-17)
+
+Added
+- Company stamp and director's stamp are added to the confirmed order in PDF format
+- Text "This offer valid until %EXPIRATION_DATE%" added to the confirmed order in PDF format
+
 3.2 (2023-08-21)
 
 Added
