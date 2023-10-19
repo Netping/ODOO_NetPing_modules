@@ -139,9 +139,11 @@
             <div t-if="doc.validity_date" class="col-4">
                 <span>This offer valid until </span><span t-field="doc.validity_date"></span>
             </div>
-            <div align="center" t-if="doc.state in ['sale', 'done']" class="col-4">
-                <img src="/Odoo_Netping_Sales/static/img/comp_stamp.png" class="mr-3" style="height:2.5cm;width:2.5cm;"/>
-                <img src="/Odoo_Netping_Sales/static/img/boss_stamp.png" style="height:1.3cm;width:1.3cm;"/>
+            <div align="center" class="col-4">
+                <div t-if="(doc.state in ['sale', 'done'] and doc.company_id.id == 1)">
+                    <img src="/Odoo_Netping_Sales/static/img/comp_stamp.png" class="mr-3" style="height:2.5cm;width:2.5cm;"/>
+                    <img src="/Odoo_Netping_Sales/static/img/boss_stamp.png" style="height:1.3cm;width:1.3cm;"/>
+                </div>
             </div>
         </xpath>
 		
