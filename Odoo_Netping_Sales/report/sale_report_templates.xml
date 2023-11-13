@@ -146,7 +146,7 @@
                     <img src="/Odoo_Netping_Sales/static/img/boss_stamp.png" style="height:1.3cm;width:1.3cm;"/>
                 </div>
 				<div t-if="(doc.state in ['sale', 'done'] and doc.company_id.id != 1)">
-                    <img src="/Odoo_Netping_Sales/static/img/z_comp_stamp.png" class="mr-3" style="height:2.5cm;width:2.5cm;"/>
+                    <img src="/Odoo_Netping_Sales/static/img/z_comp_stamp.png" class="mr-3" style="width:4.5cm"/>
                 </div>
             </div>
         </xpath>
