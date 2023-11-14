@@ -1,5 +1,9 @@
 4.3 (2023-11-14)
+
+Added
 -Zalox company stamp added to the confirmed order in PDF format [#38411466](https://netping.teamwork.com/#/tasks/38411466) (7f6764e)
+
+Fixed
 -Fixed some errors in the sales order print form
 
 4.2 (2023-10-17)
