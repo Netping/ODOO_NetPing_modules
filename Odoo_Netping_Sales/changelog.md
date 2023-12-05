@@ -1,7 +1,15 @@
+4.3 (2023-11-14)
+
+Added
+- Zalox company stamp added to the confirmed order in PDF format [#38411466](https://netping.teamwork.com/#/tasks/38411466) (7f6764e)
+
+Fixed
+- Fixed some errors in the sales order print form
+
 4.2 (2023-10-17)
 
 Added
-- Company stamp and director's stamp are added to the confirmed order in PDF format [#37954652](https://netping.teamwork.com/#/tasks/37954652) (84d6116)
+- NetPing East company stamp and director's stamp are added to the confirmed order in PDF format [#37954652](https://netping.teamwork.com/#/tasks/37954652) (84d6116)
 - Text "This offer valid until %EXPIRATION_DATE%" added to the confirmed order in PDF format [#37954673](https://netping.teamwork.com/#/tasks/37954673) (4561be6)
 
 3.2 (2023-08-21)
