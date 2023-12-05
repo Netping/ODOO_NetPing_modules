@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <template id="report_assets_common_micro_fonts" name="Custom QWeb fonts" inherit_id="web.report_assets_common">
+        <xpath expr="." position="inside">
+            <link href="/Odoo_Netping_Sales/static/src/css/fonts.css" rel="stylesheet" type="text/css"/>
+        </xpath>
+    </template>
     	
-    <template id="report_saleorder_document_netping" inherit_id="sale.report_saleorder_document">	
+    <template id="report_saleorder_document_netping" inherit_id="sale.report_saleorder_document">
 	    <xpath expr="//t[@t-set='address']" position="before">
 		    <t t-set="banks">
 	            <div class="row mb-3" t-foreach="doc.company_id.partner_id.bank_ids" t-as="bank">
@@ -41,12 +47,12 @@
                         <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Invoicing and Shipping Address:</strong>
                         <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing Address:</strong>
                         <div t-field="doc.partner_invoice_id"
-                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
-                            <t t-if="doc.partner_shipping_id != doc.partner_invoice_id">
-                                <strong>Shipping Address:</strong>
-                                <div t-field="doc.partner_shipping_id"
-                                    t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
-                            </t>
+                             t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                        <t t-if="doc.partner_shipping_id != doc.partner_invoice_id">
+                            <strong>Shipping Address:</strong>
+                            <div t-field="doc.partner_shipping_id"
+                                 t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                        </t>
                 </t>
             </t>
 		</xpath>
