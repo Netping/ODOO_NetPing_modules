@@ -1,8 +1,8 @@
 1.3 (2023-12-08)
 
 Added
-- Added fonts to support Chinese characters on printing
-- Automatic setting of the report.url parameter when installing the module
+- Added fonts to support Chinese characters on printing [#35582017](https://netping.teamwork.com/#/tasks/35582017) (aaf4063)
+- Automatic setting of the report.url parameter when installing the module [#37236278](https://netping.teamwork.com/#/tasks/37236278) (8f57c5f)
 
 1.2 (2023-06-03)
 
