@@ -1,7 +1,7 @@
 4.4 (2023-12-08)
 
 Fixed
-- Fixed printing of Chinese characters in Sale order report
+- Fixed printing of Chinese characters in Sale order report [#35582017](https://netping.teamwork.com/#/tasks/35582017) (8088b29)
 
 4.3 (2023-11-14)
 
