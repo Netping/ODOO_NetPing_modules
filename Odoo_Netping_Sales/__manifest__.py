@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name' : 'Odoo_Netping_Sales',
-    'version' : '4.3',
+    'version' : '4.4',
     'summary': 'Sales',
     'author': 'Andrei Zelenin',
     'sequence': 0,
