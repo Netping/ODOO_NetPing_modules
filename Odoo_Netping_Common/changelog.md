@@ -1,3 +1,9 @@
+1.3 (2023-12-08)
+
+Added
+- Added fonts to support Chinese characters on printing
+- Automatic setting of the report.url parameter when installing the module
+
 1.2 (2023-06-03)
 
 Initial version
