@@ -1,3 +1,8 @@
+4.4 (2023-12-08)
+
+Fixed
+- Fixed printing of Chinese characters in Sale order report
+  
 4.3 (2023-11-14)
 
 Added
