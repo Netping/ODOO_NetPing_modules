@@ -1,13 +1,19 @@
 @font-face {
     font-family: "Microsoft YaHei";
     src:
-	    local("MicrosoftYaHei"),
-		url("/Odoo_Netping_Common/static/fonts/MicrosoftYaHei.eot"),
+	local("MicrosoftYaHei"),
+	url("/Odoo_Netping_Common/static/fonts/MicrosoftYaHei.eot"),
         url("/Odoo_Netping_Common/static/fonts/MicrosoftYaHei.woff2")format("woff2"),
         url("/Odoo_Netping_Common/static/fonts/MicrosoftYaHei.woff")format("woff"),
         url("/Odoo_Netping_Common/static/fonts/MicrosoftYaHei.ttf")format("truetype");
 }
 
+div.wrapwrap {
+    font-family: Microsoft YaHei;
+}
+div.header {
+    font-family: Microsoft YaHei;
+}
 div.o_report_layout_standard {
     font-family: Microsoft YaHei;
 }
