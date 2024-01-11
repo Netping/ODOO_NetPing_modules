@@ -1,4 +1,9 @@
-1.3 (2023-12-08)
+1.5 (2024-01-11)
+
+Fixed
+- Fixed printing of Chinese characters in the document header
+  
+1.4 (2023-12-08)
 
 Added
 - Added fonts to support Chinese characters on printing [#35582017](https://netping.teamwork.com/#/tasks/35582017) (aaf4063)
