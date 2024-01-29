@@ -1,3 +1,9 @@
+1.3 (2024-01-29)
+
+Changed
+
+- Fixed default filter [#39199623](https://netping.teamwork.com/#tasks/39199623) (e8f198d)
+
 1.2 (2023-03-17)
 
 Changed
