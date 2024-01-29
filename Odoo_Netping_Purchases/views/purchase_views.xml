@@ -89,6 +89,19 @@
               </tree>
           </field>
       </record>
+	  
+	  <!-- Override purchase_order_view_search view for Purchase Orders-->
+      <record id="netping_purchase_order_view_search" model="ir.ui.view">
+          <field name="name">netping.purchase.order.view.search</field>
+          <field name="model">purchase.order</field>
+          <field name="inherit_id" ref="purchase.purchase_order_view_search"/>
+          <field name="arch" type="xml">
+              <xpath expr="//filter[@name='my_Orders']" position="before">
+                  <filter name="active_purchases" string="Active Purchases" domain="[('state', '=', 'purchase')]"/>
+				  <separator/>
+              </xpath>
+          </field>
+      </record>
 
       <!-- Override sale_order_action_view_order_tree action for Sales Orders menu -->
       <record id="purchase.purchase_form_action" model="ir.actions.act_window">
@@ -97,9 +110,9 @@
           <field name="res_model">purchase.order</field>
           <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
           <field name="view_id" ref="netping_purchase_order_view_tree"/>
-          <field name="domain">[('state','=', 'purchase')]</field>
+          <field name="domain">[('state','in',('purchase', 'done'))]</field>
           <field name="search_view_id" ref="purchase.purchase_order_view_search"/>
-          <field name="context">{}</field>
+          <field name="context">{'search_default_active_purchases': 1}</field>
           <field name="help" type="html">
               <p class="o_view_nocontent_smiling_face">
                   No purchase order found. Let's create one!
