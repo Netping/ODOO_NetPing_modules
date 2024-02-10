@@ -183,6 +183,18 @@
           </p>
         </field>
     </record>
+	
+	
+    <!-- Add SET TO DONE action menu for Purchase Order -->
+    <record model="ir.actions.server" id="action_poe_set_to_done">
+        <field name="name">Set to Done</field>
+        <field name="model_id" ref="Odoo_Netping_Purchases.model_purchase_order"/>
+        <field name="binding_model_id" ref="Odoo_Netping_Purchases.model_purchase_order"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = records.action_poe_set_to_done()
+        </field>
+    </record>
     
   </data>
 </odoo>
