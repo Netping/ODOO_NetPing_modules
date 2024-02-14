@@ -1,3 +1,10 @@
+1.4 (2024-02-14)
+
+Added
+
+- Added "Set to Done" menu item in Actions to set selected Purchase Oredrs to Locked state [39265938](https://netping.teamwork.com/app/tasks/39265938) (84e8de8
+ )
+
 1.3 (2024-01-29)
 
 Changed
