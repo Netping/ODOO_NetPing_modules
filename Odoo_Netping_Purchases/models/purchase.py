@@ -39,7 +39,7 @@ class PurchaseOrder(models.Model):
                 for action in actions_in_toolbar:
                     if action.get('xml_id'):
                         action_match = action['xml_id'] == 'Odoo_Netping_Purchases.action_poe_set_to_done'
-                        res_name_match = res['name'] == 'netping.purchase.order.inherit.purchase.order.tree'
+                        res_name_match = res['name'] in ['netping.purchase.order.inherit.purchase.order.tree', 'purchase.order.form']
                         if action_match and res_name_match:
                             res['toolbar']['action'].remove(action)
         return res
