@@ -1,3 +1,10 @@
+4.5 (2024-03-06)
+
+Fixed
+
+- Canceled documents are displayed when filters are droped [#39539752](https://netping.teamwork.com/#/tasks/39539752) (
+50d25a1)
+
 4.4 (2023-12-08)
 
 Fixed
