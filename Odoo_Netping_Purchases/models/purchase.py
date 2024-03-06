@@ -11,7 +11,6 @@ class PurchaseOrder(models.Model):
     def action_poe_set_to_done(self):
         not_purchase = []
         for record in self:
-            _logger.info(record.name)
             if record.state == 'purchase':
                 record.button_done()
             else:
