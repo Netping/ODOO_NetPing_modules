@@ -1,3 +1,16 @@
+1.5 (2024-03-06)
+
+Changed
+
+- The default view has been changed to a list view for Orders->Purchase Orders [39220585](https://netping.teamwork.com/#/tasks/39220585) (
+090a1b3)
+- Purchase Orders opens immediately after opening the Purchase module [39220585](https://netping.teamwork.com/#/tasks/39220585) (
+090a1b3)
+
+Fixed
+
+- Canceled documents are displayed when filters are droped [39539752](https://netping.teamwork.com/#/tasks/39539752) (090a1b3)
+
 1.4 (2024-02-14)
 
 Added
