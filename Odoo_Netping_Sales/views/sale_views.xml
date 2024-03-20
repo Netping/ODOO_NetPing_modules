@@ -19,6 +19,14 @@
                 <field name="amount_total" sum="Total Tax Included" widget="monetary" decoration-bf="1" optional="show"/>
                 <field name="state" decoration-success="state == 'sale' or state == 'done'" decoration-info="state == 'draft' or state == 'sent'" widget="badge" optional="show"/>
                 <field name="invoice_status" optional="hide"/>
+				<field name="payment_status" widget="badge" optional="hide"
+                       decoration-warning="payment_status == 'no'" decoration-info="payment_status == 'partly'"
+                       decoration-success="payment_status == 'done'"
+                />
+                <field name="picking_status" widget="badge" optional="hide"
+                       decoration-warning="picking_status == 'no'" decoration-info="picking_status == 'partly'"
+                       decoration-success="picking_status == 'done'"
+				/>
                 <field name="message_needaction" invisible="1"/>
                 <field name="currency_id" invisible="1"/>
             </tree>
@@ -79,6 +87,14 @@
                 <field name="amount_total" sum="Total Tax Included" widget="monetary" decoration-bf="1" optional="show"/>
                 <field name="currency_id" invisible="1"/>
                 <field name="invoice_status" widget="badge" optional="show"/>
+				<field name="payment_status" widget="badge" optional="show"
+                       decoration-warning="payment_status == 'no'" decoration-info="payment_status == 'partly'"
+                       decoration-success="payment_status == 'done'"
+                />
+                <field name="picking_status" widget="badge" optional="show"
+                       decoration-warning="picking_status == 'no'" decoration-info="picking_status == 'partly'"
+                       decoration-success="picking_status == 'done'"
+                />
                 <field name="state"/>
             </tree>
         </field>
