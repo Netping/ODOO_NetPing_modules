@@ -12,12 +12,12 @@ class PurchaseOrder(models.Model):
         ('no', 'Not Paid'),
         ('partly', 'Partly'),
         ('done', 'Paid'),
-    ], string='Payment Status', compute='_get_payment_status', store=True, readonly=True, copy=False, default='no')
+    ], string='Payment Status', compute='_get_payment_status', readonly=True, copy=False, default='no')
     picking_status = fields.Selection([
         ('no', 'Empty'),
         ('partly', 'Partly'),
         ('done', 'Fully Done'),
-    ], string='Picking Status', compute='_get_picking_status', store=True, readonly=True, copy=False, default='no')
+    ], string='Picking Status', compute='_get_picking_status', readonly=True, copy=False, default='no')
 	
     def action_poe_set_to_done(self):
         not_purchase = []
@@ -65,7 +65,6 @@ class PurchaseOrder(models.Model):
                 transfer.scheduled_date = vals['date_planned']
         return res
 		
-    @api.depends('invoice_ids')
     def _get_payment_status(self):
         for order in self:
             payment_states = [invoice.payment_state for invoice in order.invoice_ids if invoice.state == 'posted']
@@ -79,18 +78,25 @@ class PurchaseOrder(models.Model):
             else:
                 order.payment_status = 'no'
 					
-    @api.depends('order_line')
     def _get_picking_status(self):
-        res = 'done'
         for order in self:
-            status_list = ['no', 'partly', 'done']
+            status = 'done'
             full_qty_received = 0
+            products_dict = {}
             for line in order.order_line:
-                full_qty_received += line.qty_received
-                if line.product_qty > 0 and line.qty_received < line.product_qty:
-                    if 'done' in status_list:
-                        status_list.pop()
-            if full_qty_received == 0:
-                status_list.pop()
-            order.picking_status = status_list.pop()
+                if line.product_id.type != 'service':
+                    if line.product_id.id not in products_dict:
+                        products_dict[line.product_id.id] = [line.product_qty, line.qty_received]
+                    else:
+                        products_dict[line.product_id.id][0] += line.product_qty
+                        products_dict[line.product_id.id][1] += line.qty_received
+                    full_qty_received += line.qty_received
+            if not products_dict or full_qty_received == 0:
+                status = 'no'
+            else:
+                for id_product in products_dict:
+                    if products_dict[id_product][1] < products_dict[id_product][0]:
+                        status = 'partly'
+                        break
+            order.picking_status = status
         
