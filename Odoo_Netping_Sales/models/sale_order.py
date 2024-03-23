@@ -12,12 +12,12 @@ class SaleOrder(models.Model):
         ('no', 'Not Paid'),
         ('partly', 'Partly'),
         ('done', 'Paid'),
-    ], string='Payment Status', compute='_get_payment_status', store=True, readonly=True, copy=False, default='no')
+    ], string='Payment Status', compute='_get_payment_status', readonly=True, copy=False, default='no')
     picking_status = fields.Selection([
         ('no', 'Empty'),
         ('partly', 'Partly'),
         ('done', 'Fully Done'),
-    ], string='Picking Status', compute='_get_picking_status', store=True, readonly=True, copy=False, default='no')
+    ], string='Picking Status', compute='_get_picking_status', readonly=True, copy=False, default='no')
 	
     def _prepare_confirmation_values(self):
         return {
@@ -35,7 +35,6 @@ class SaleOrder(models.Model):
                 order_weight += line.x_weight * line.product_uom_qty
             order.x_weight_str = str(round(order_weight, 2)) if order_weight else '-'
 			
-    @api.depends('invoice_ids')
     def _get_payment_status(self):
         for order in self:
             payment_states = [invoice.payment_state for invoice in order.invoice_ids if invoice.state == 'posted']
@@ -49,20 +48,27 @@ class SaleOrder(models.Model):
             else:
                 order.payment_status = 'no'
 					
-    @api.depends('order_line')
     def _get_picking_status(self):
-        res = 'done'
         for order in self:
-            status_list = ['no', 'partly', 'done']
+            status = 'done'
             full_qty_delivered = 0
+            products_dict = {}
             for line in order.order_line:
-                full_qty_delivered += line.qty_delivered
-                if line.product_uom_qty > 0 and line.qty_delivered < line.product_uom_qty:
-                    if 'done' in status_list:
-                        status_list.pop()
-            if full_qty_delivered == 0:
-                status_list.pop()
-            order.picking_status = status_list.pop()
+                if line.product_id.type != 'service':
+                    if line.product_id.id not in products_dict:
+                        products_dict[line.product_id.id] = [line.product_uom_qty, line.qty_delivered]
+                    else:
+                        products_dict[line.product_id.id][0] += line.product_uom_qty
+                        products_dict[line.product_id.id][1] += line.qty_delivered
+                    full_qty_delivered += line.qty_delivered
+            if not products_dict or full_qty_delivered == 0:
+                status = 'no'
+            else:
+                for id_product in products_dict:
+                    if products_dict[id_product][1] < products_dict[id_product][0]:
+                        status = 'partly'
+                        break
+            order.picking_status = status
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
