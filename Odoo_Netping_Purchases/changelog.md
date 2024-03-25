@@ -1,3 +1,10 @@
+1.6 (2024-03-25)
+
+Added
+
+- Extended shipment and payment statuses for PO document. [39210276](https://netping.teamwork.com/#/tasks/39210276) (f3e3999)
+- Auto change the scheduled_date field of the WH/IN document when the date_planned field in the PO document changes [39220586](https://netping.teamwork.com/#/tasks/39220586) (f3e3999)
+
 1.5 (2024-03-06)
 
 Changed
