@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id='netping_web_layout' inherit_id='web.layout'>
+            <xpath expr="//body" position="inside">
+                <t t-set="navbar_bg" t-value='request.env["res.company"].sudo().search([("id", "=", request.httprequest.cookies.get("cids")[0])], limit=1).navbar_bg if request else False'/>
+                <t t-if='navbar_bg'>
+                    <style>.o_main_navbar {background-color:<t t-esc='navbar_bg'/>!important;border-bottom: 0px;}</style>
+                </t>
+                <t t-set="navbar_hover_bg" t-value='request.env["res.company"].sudo().search([("id", "=", request.httprequest.cookies.get("cids")[0])], limit=1).navbar_hover_bg if request else False'/>
+                <t t-set="navbar_text_color" t-value='request.env["res.company"].sudo().search([("id", "=", request.httprequest.cookies.get("cids")[0])], limit=1).navbar_text_color if request else False'/>
+                <t t-if='navbar_text_color'>
+                    <style>nav.o_main_navbar > ul > li > a {color:<t t-esc='navbar_text_color'/>;}</style>
+                    <style>nav.o_main_navbar a {color:<t t-esc='navbar_text_color'/> !important;}</style>
+                    <style>nav.o_main_navbar button {color:<t t-esc='navbar_text_color'/>;}</style>
+                </t>
+                <t t-if='navbar_hover_bg'>
+                    <style>nav.o_main_navbar > ul > li > a:hover {background-color:<t t-esc='navbar_hover_bg'/>;}</style>
+                    <style>nav.o_main_navbar a:hover {background-color:<t t-esc='navbar_hover_bg'/>;}</style>
+                    <style>nav.o_main_navbar button:hover {background-color:<t t-esc='navbar_hover_bg'/>;}</style>
+                    <style>.o_main_navbar .show .dropdown-toggle {background-color:<t t-esc='navbar_hover_bg'/>;}</style>
+                </t>
+            </xpath>
+			
+            <xpath expr="//head" position="inside">
+                <t t-set="home_bg_from" t-value='request.env["res.company"].sudo().search([("id", "=", request.httprequest.cookies.get("cids")[0])], limit=1).home_bg_from if request else False'/>
+                <t t-set="home_bg_to" t-value='request.env["res.company"].sudo().search([("id", "=", request.httprequest.cookies.get("cids")[0])], limit=1).home_bg_to if request else False'/>
+                <t t-if='home_bg_from'>
+                    <style>body.o_home_menu_background {background: url(/web_enterprise/static/src/img/home-menu-bg-overlay.svg), linear-gradient(to right bottom, <t t-esc='home_bg_from'/>, <t t-esc='home_bg_to'/>);}</style>
+                </t>
+            </xpath>
+        </template>
+    </data>
+</odoo>
