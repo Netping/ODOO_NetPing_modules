@@ -16,12 +16,6 @@ def common_pre_init_hook(cr):
 	sys_param_ids = env['ir.config_parameter'].search([('key', '=', 'report.url')])
 	for sys_param in sys_param_ids:
 		sys_param.sudo().unlink()
-	# Add fields to res_comany
-	cr.execute("ALTER TABLE res_company ADD COLUMN navbar_bg varchar(10) NULL")
-	cr.execute("ALTER TABLE res_company ADD COLUMN navbar_hover_bg varchar(10) NULL")
-	cr.execute("ALTER TABLE res_company ADD COLUMN navbar_text_color varchar(10) NULL")
-	cr.execute("ALTER TABLE res_company ADD COLUMN home_bg_from varchar(10) NULL")
-	cr.execute("ALTER TABLE res_company ADD COLUMN home_bg_to varchar(10) NULL")
 	
 def common_post_init_hook(cr, registry):
 	env = api.Environment(cr, SUPERUSER_ID, {})
