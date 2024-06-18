@@ -22,11 +22,13 @@ def common_post_init_hook(cr, registry):
 	paper = env['report.paperformat'].search([('name', '=', 'East A4 portrait')], limit=1)
 	paper_id = paper.id if paper else 0
 	if paper_id:
-		env['res.company'].search([('id', '=', 1)]).paperformat_id = paper_id
+		for company in env['res.company'].search([]):
+			company.paperformat_id = paper_id
 	extlayout = env['ir.ui.view'].search([('key', '=', 'Odoo_Netping_Common.external_layout_netping')], limit=1)
 	extlayout_id = extlayout.id if extlayout else 0
 	if extlayout_id:
-		env['res.company'].search([('id', '=', 1)]).external_report_layout_id = extlayout_id
+		for company in env['res.company'].search([]):
+			company.external_report_layout_id = extlayout_id
 	# Add report.url current value
 	rep_url = env['ir.config_parameter'].get_param('web.base.url')
 	rep_url_conf = env['ir.config_parameter'].create({'key': 'report.url', 'value': rep_url})
