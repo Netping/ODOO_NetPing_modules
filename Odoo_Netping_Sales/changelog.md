@@ -1,3 +1,9 @@
+4.6 (2024-03-25)
+
+Added
+
+- Extended shipment and payment statuses for SO document. [39210276](https://netping.teamwork.com/#/tasks/39210276) (f3e3999)
+
 4.5 (2024-03-06)
 
 Fixed
