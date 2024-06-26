@@ -1,3 +1,9 @@
+4.7 (2024-06-26)
+
+Fixed
+
+- Removed dependency on the Common module
+
 4.6 (2024-03-25)
 
 Added
