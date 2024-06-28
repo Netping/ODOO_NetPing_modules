@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name' : 'Odoo_API_SQL',
-    'version' : 'Epic2.S2.1',
+    'version' : '2.1',
     'summary': 'NetPing cutomized module Odoo_API_SQL',
     'author': 'NetPing',
     'sequence': 0,
