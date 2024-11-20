@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <data>
-  
-	<!-- Products -->
 
-	<!-- Override product_template_action_product action for Products menu -->
+    <!-- Products -->
+
+    <!-- Override product_template_action_product action for Products menu -->
     <record id="stock.product_template_action_product" model="ir.actions.act_window">
         <field name="name">Products</field>
         <field name="type">ir.actions.act_window</field>
@@ -20,14 +20,26 @@
             </p>
         </field>
     </record>
-	
-	<!-- Inherit Products (product_template_form_view_procurement_button) From -->
+
+    <!-- Inherit Products (product_template_form_view_procurement_button) From -->
     <record id="netping_view_product_template_form" model="ir.ui.view">
         <field name="name">netping.product.template.form</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='barcode']" position="after">
+            <xpath expr="//label[@for='weight']" position="before">
+                <field name="x_hs_code" string="HS-code"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit Products (product_form_view_procurement_button) From -->
+    <record id="netping_view_product_form" model="ir.ui.view">
+        <field name="name">netping.product.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='weight']" position="before">
                 <field name="x_hs_code" string="HS-code"/>
             </xpath>
         </field>
