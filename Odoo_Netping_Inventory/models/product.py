@@ -11,4 +11,4 @@ class ProductTemplate(models.Model):
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
-    x_hs_code = fields.Char(string="HS-code", related='product_tmpl_id.x_hs_code', store=True)
+    x_hs_code = fields.Char(string="HS-code", related='product_tmpl_id.x_hs_code', store=True, readonly=False)
