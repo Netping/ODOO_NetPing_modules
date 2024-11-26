@@ -27,7 +27,7 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='type_id']" position="after">
+            <xpath expr="//field[@name='type']" position="after">
                 <field name="x_hs_code" string="HS-code"/>
             </xpath>
         </field>
