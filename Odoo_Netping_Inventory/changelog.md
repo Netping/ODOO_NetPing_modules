@@ -1,3 +1,8 @@
+3.3 (2024-11-27)
+Fixed
+- HS-code field is now editable if the product was opened for editing from SO or PO [#41662013](https://netping.teamwork.com/app/tasks/41662013) (098e919)
+- The number of products on one page in IN document is increased up to 200 [#41820783](https://netping.teamwork.com/#/tasks/41820783) (3d4ba9c)
+
 3.1 (2023-07-04)
 Added
 - Add multiple packages in internal transfer document [#36605746](https://netping.teamwork.com/#/tasks/36605746) (fa29663)
