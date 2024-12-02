@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="Assets Backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/Odoo_Netping_Common/static/src/js/control_panel/control_panel_x2many.js"></script>
+        </xpath>
+    </template>
+</odoo>
