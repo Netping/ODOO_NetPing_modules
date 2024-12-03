@@ -1,3 +1,9 @@
+1.8 (2024-12-03)
+
+Added
+
+- Added display of the number of records in tables [#41820783](https://netping.teamwork.com/app/tasks/41820783) (11b03b4)
+
 1.7 (2024-06-26)
 
 Added
